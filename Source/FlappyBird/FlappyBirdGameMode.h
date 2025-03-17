@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameMode.h"
+#include "GameFramework/GameModeBase.h"
 #include "GameModeInterface.h"
 #include "FlappyBirdGameMode.generated.h"
 
@@ -12,7 +12,7 @@ class APipeObstacle;
 class IPlayerInterface;
 
 UCLASS()
-class FLAPPYBIRD_API AFlappyBirdGameMode : public AGameMode, public IGameModeInterface
+class FLAPPYBIRD_API AFlappyBirdGameMode : public AGameModeBase, public IGameModeInterface
 {
 	GENERATED_BODY()
 	
