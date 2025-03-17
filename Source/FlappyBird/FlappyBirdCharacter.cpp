@@ -41,6 +41,11 @@ AFlappyBirdCharacter::AFlappyBirdCharacter()
 void AFlappyBirdCharacter::Flap()
 {
     LaunchCharacter(FVector(0.0f, 0.0f, FlapStrength), true, true);
+
+    if (FlapSound)
+    {
+        UGameplayStatics::PlaySound2D(this, FlapSound);
+    }
 }
 
 // Called when the game starts or when spawned
@@ -120,25 +125,34 @@ void AFlappyBirdCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 void AFlappyBirdCharacter::Die()
 {
-    if (GetMesh())
+    if (!bDead)
     {
-        bDead = true;
-        GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-        GetMesh()->SetSimulatePhysics(true);
-        //GetMesh()->AddImpulseAtLocation(FVector(ImpulseStrength, 0.f, 0.f), GetActorLocation());
-        SetActorTickEnabled(true);
-        
-        if (GameModeInterface)
+        if (GetMesh())
         {
-            GameModeInterface->StopPipesMovement();
-            GameModeInterface->GetGamePlayWidgetReference()->ShowRestartButton();
-        }
-        
-        if (Score > HighScore)
-        {
-            if (GameInfoInstanceInterface)
+            bDead = true;
+            GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+            GetMesh()->SetSimulatePhysics(true);
+            //GetMesh()->AddImpulseAtLocation(FVector(ImpulseStrength, 0.f, 0.f), GetActorLocation());
+            SetActorTickEnabled(true);
+
+            if (DeathSound)
             {
-                GameInfoInstanceInterface->SaveHighScore(Score);
+                UGameplayStatics::PlaySound2D(this, DeathSound);
+            }
+
+            if (GameModeInterface)
+            {
+                GameModeInterface->StopPipesMovement();
+                GameModeInterface->GetGamePlayWidgetReference()->ShowRestartButton();
+                GameModeInterface->GetGamePlayWidgetReference()->DisableFlapButton();
+            }
+
+            if (Score > HighScore)
+            {
+                if (GameInfoInstanceInterface)
+                {
+                    GameInfoInstanceInterface->SaveHighScore(Score);
+                }
             }
         }
     }

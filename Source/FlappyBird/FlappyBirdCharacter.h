@@ -71,6 +71,12 @@ private:
 
     bool bDead = false;
 
-    UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+    UPROPERTY(EditDefaultsOnly, Category = "Sound Effects")
     USoundBase* ScoreIncrementSound;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Sound Effects")
+    USoundBase* DeathSound;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Sound Effects")
+    USoundBase* FlapSound;
 };

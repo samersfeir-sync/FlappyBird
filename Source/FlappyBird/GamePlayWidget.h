@@ -19,6 +19,7 @@ public:
 	void UpdateScoreText(int Score);
 	void ShowRestartButton();
 	void SetHighScoreText(int HighScore);
+	void DisableFlapButton();
 
 private:
 

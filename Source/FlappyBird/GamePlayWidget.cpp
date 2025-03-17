@@ -34,6 +34,14 @@ void UGamePlayWidget::SetHighScoreText(int HighScore)
 	}
 }
 
+void UGamePlayWidget::DisableFlapButton()
+{
+	if (StartGameButton)
+	{
+		StartGameButton->SetIsEnabled(false);
+	}
+}
+
 void UGamePlayWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
