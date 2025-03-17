@@ -61,11 +61,7 @@ void AFlappyBirdGameMode::ReUseObstacle(APipeObstacle* ObstacleToReUse)
 
 void AFlappyBirdGameMode::RestartGame()
 {
-    if (GetWorld())
-    {
-        FName CurrentLevel = *GetWorld()->GetMapName();
-        UGameplayStatics::OpenLevel(GetWorld(), CurrentLevel);
-    }
+    AGameMode::RestartGame();
 }
 
 void AFlappyBirdGameMode::BeginPlay()
