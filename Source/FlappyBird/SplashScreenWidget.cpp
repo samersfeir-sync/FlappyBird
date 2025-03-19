@@ -5,6 +5,7 @@
 #include "MediaPlayer.h"
 #include "Kismet/GameplayStatics.h"
 
+
 void USplashScreenWidget::NativeConstruct()
 {
     Super::NativeConstruct();
@@ -12,16 +13,18 @@ void USplashScreenWidget::NativeConstruct()
     if (MediaPlayer && MediaSource)
     {
         MediaPlayer->OpenSource(MediaSource);
+
         MediaPlayer->OnEndReached.AddDynamic(this, &USplashScreenWidget::OnVideoFinished);
     }
 }
 
 void USplashScreenWidget::OnVideoFinished()
 {
-    FTimerHandle TimerHandle_OpenLevel;
 
+    FTimerHandle TimerHandle_OpenLevel;
     GetWorld()->GetTimerManager().SetTimer(TimerHandle_OpenLevel, this, &USplashScreenWidget::OpenFlappyBirdMap, 0.5f, false);
 }
+
 
 void USplashScreenWidget::OpenFlappyBirdMap()
 {
