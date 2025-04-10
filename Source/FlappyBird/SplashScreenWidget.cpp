@@ -14,6 +14,11 @@ void USplashScreenWidget::NativeConstruct()
     {
         MediaPlayer->OpenSource(MediaSource);
 
+        if (SplashSound)
+        {
+            UGameplayStatics::PlaySound2D(this, SplashSound);
+        }
+
         MediaPlayer->OnEndReached.AddDynamic(this, &USplashScreenWidget::OnVideoFinished);
     }
 }

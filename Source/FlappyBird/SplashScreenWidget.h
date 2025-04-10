@@ -36,4 +36,8 @@ private:
 	void OnVideoFinished();
 
 	void OpenFlappyBirdMap();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Audio")
+	USoundBase* SplashSound;
+
 };
